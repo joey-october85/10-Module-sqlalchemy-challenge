@@ -5,6 +5,9 @@ In this challenge we use SQLAlchemy to and Flask to execute a climate analysis o
 
 To start the dependencies are imported from matplotlib, numpy, pandas, datetime and sqlalchemy.
 
+
+## Analyze and Explore the Climate Data
+
 Using SQLAlchemy an engine is created to the SQLite database, reflected to a new model, and classes are extracted.
 
 Using the extracted classes, a reference to each table is saved and a session is created from Python to the Database.
@@ -19,7 +22,7 @@ Pandas Plotting with Matplotlib is used to plot the data to show inches of preci
 
 
 
-**Exploratory Station Analysis**
+## Exploratory Station Analysis
 
 The station table columns and content are inspected/reviewed and a query is run to calculate the total number of stations int eh dataset.
 
@@ -30,7 +33,7 @@ Additionally, previous 12 months of data is queried for the most active station 
 
 Finally, the session is closed.
 
-**Design the Climate App**
+## Design the Climate App
 
 To create the Climate App, the dependencies are loaded from numpy, sqlalchemy, datetime, pandas and flask.
 
