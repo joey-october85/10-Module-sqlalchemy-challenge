@@ -8,15 +8,15 @@ To start the dependencies are imported from matplotlib, numpy, pandas, datetime 
 
 ## Analyze and Explore the Climate Data
 
-Using SQLAlchemy an engine is created to the SQLite database, reflected to a new model, and classes are extracted.
+Using SQLAlchemy an engine is created to the SQLite database, reflected to a new model, and classes are extracted.<br><br>
 
-Using the extracted classes, a reference to each table is saved and a session is created from Python to the Database.<br>
+Using the extracted classes, a reference to each table is saved and a session is created from Python to the Database.<br><br>
 
 The table columns are inspected using the inspector tool and a query is executed to identify the most recent date in the data set and the day one year from the most recent date is calculated.
 
-Another query is executed to retrieve the data and precipitation scores for one year's worth of data. (Date range from the day one year from the most recent date to the most recent date included in the data set)<br>
+Another query is executed to retrieve the data and precipitation scores for one year's worth of data. (Date range from the day one year from the most recent date to the most recent date included in the data set)<br><br>
 
-The query results are saved into a Pandas dataframe with the date data converted into date type, the columns are renamed and the data is sorted by the date.<br>
+The query results are saved into a Pandas dataframe with the date data converted into date type, the columns are renamed and the data is sorted by the date.<br><br>
 
 Pandas Plotting with Matplotlib is used to plot the data to show inches of precipitation within the date range and the summary statistics are calculated.<br><br>
 
