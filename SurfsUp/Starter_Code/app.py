@@ -48,8 +48,8 @@ def home():
         f"/api/v1.0/precipitation <br/>"
         f"/api/v1.0/stations <br/>"
         f"/api/v1.0/tobs <br/>"
-        f"/api/v1.0/<start> <br/>"
-        f""
+        f"/api/v1.0/start <br/>"
+        f"/api/v1.0/start/end <br/>"
     )
 
 # Convert the query results from your precipitation analysis (i.e. retrieve only the last 12 months of data) to a dictionary using date as the key and prcp as the value.
@@ -122,22 +122,44 @@ def tobs():
 # For a specified start, calculate TMIN, TAVG, and TMAX for all the dates greater than or equal to the start date.
 # For a specified start date and end date, calculate TMIN, TAVG, and TMAX for the dates from the start date to the end date, inclusive.
 @app.route("/api/v1.0/<start>")
-def start():
+def start(start):
     #create session
     session = Session(engine)
 
+    start_date = dt.datetime.strptime(start, "%m-%d-%Y")
+
+    sel = [func.min(Measr.tobs), func.max(Measr.tobs), func.avg(Measr.tobs)]
+    
+    st_active = session.query(*sel). \
+    filter(Measr.date >= start_date).all()
+
     #close session
     session.close()
-    return()
+
+    activity = list(np.ravel(st_active))
+
+    return jsonify(activity)
 
 @app.route("/api/v1.0/<start>/<end>")
-def end():
+def end(start, end):
     #create session
     session = Session(engine)
 
+    start_date = dt.datetime.strptime(start, "%m-%d-%Y")
+    end_date = dt.datetime.strptime(end, "%m-%d-%Y")
+
+    sel = [func.min(Measr.tobs), func.max(Measr.tobs), func.avg(Measr.tobs)]
+    
+    st_active = session.query(*sel). \
+    filter(Measr.date >= start_date).\
+    filter(Measr.date <= end_date).all()
+
     #close session
     session.close()
-    return()
+
+    activity = list(np.ravel(st_active))
+
+    return jsonify(activity)
 
 
 if __name__ == '__main__':
